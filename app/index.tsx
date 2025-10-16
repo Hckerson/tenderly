@@ -1,4 +1,5 @@
 import { Text, View } from "react-native";
+import { Link } from "expo-router";
 
 export default function Index() {
   return (
@@ -10,6 +11,9 @@ export default function Index() {
       }}
     >
       <Text className="">No good boy.</Text>
+      <Link href={'/onboarding/page.'}>
+        move to onboarding
+      </Link>
     </View>
   );
 }
