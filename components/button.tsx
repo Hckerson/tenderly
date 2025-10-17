@@ -41,18 +41,11 @@ export default function Button({
 		>
 			{small ? (
 				isLoading ? (
-					<Feather
-						name="loader"
-						size={24}
-						color="black"
-						className="size-6 animate-spin"
-					/>
+<Feather name="loader" size={24} color="black" />
 				) : (
 					<Text
-						className={`                            "xs:text-base absolute inset-0 flex items-center justify-center text-sm transition-colors duration-150 ease-in"${style}`}
-					>
-						{children}
-					</Text>
+						className={`xs:text-base absolute inset-0 flex items-center justify-center text-sm transition-colors duration-150 ease-in ${style}`}
+					/>
 				)
 			) : (
 				<View
@@ -64,12 +57,7 @@ export default function Button({
 				>
 					{isLoading && (
 						<View className="pl-2">
-							<Feather
-								name="loader"
-								size={24}
-								color="black"
-								className="relative flex size-6 animate-spin items-center justify-center"
-							/>
+							<Feather name="loader" size={24} color="black" />
 						</View>
 					)}
 					<Text className="xs:text-base flex h-full w-full items-center justify-center text-sm">

@@ -1,7 +1,7 @@
 import { onboardingData } from "@/lib/place-holder";
 import { OnboardingData } from "@/types/placeholders";
 import { Image } from "expo-image";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 
 const blurhash =
@@ -19,7 +19,7 @@ export default function OnboardingPageOne() {
 							style={[{ width }]}
 							className="items-center h-screen flex-1"
 						>
-							<View className="flex-[0.667_1] justify-center w-full items-center">
+							<View className="flex-[0.667_1] justify-center  w-full items-center">
 								<Image
 									placeholder={{ blurhash }}
 									style={{
