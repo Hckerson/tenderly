@@ -25,7 +25,7 @@ export default function Button({
 		"rounded-[12px] h-[36px] w-full lg:h-[46px]": (size = "custom"),
 	};
 	return (
-		<LinearGradient colors={['#1C77F5', '#1763CC']}
+		<Pressable
 			className={clsx(
 				"relative z-0 flex   items-center justify-center overflow-hidden shadow-inner",
 
@@ -64,6 +64,6 @@ export default function Button({
 					</Text>
 				</Pressable>
 			)}
-		</LinearGradient>
+		</Pressable>
 	);
 }
