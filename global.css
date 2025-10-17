@@ -2,13 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-	--background-primary: #1a414b;
+	--background-primary: #070b0f;
+	--background-secondary: #02141d;
+	--button-primary: #277ed0;
+	--text-primary: #ffffff;
+	--text-secondary: #d7dcde;
+	--bubble-primary: #277ed0;
+	--image-background: #1f2628;
 }
 
 .dark {
-	--background-primary: #0a0a0a;
+	--background-primary: #070b0f;
+	--background-secondary: #02141d;
+	--button-primary: #277ed0;
+	--text-primary: #ffffff;
+	--text-secondary: #d7dcde;
+	--bubble-primary: #277ed0;
+	--image-background: #1f2628;
 }
 
 @layer components {
 }
+
