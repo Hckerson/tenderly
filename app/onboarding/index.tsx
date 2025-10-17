@@ -1,3 +1,4 @@
+import Button from "@/components/button";
 import { onboardingData } from "@/lib/place-holder";
 import { OnboardingData } from "@/types/placeholders";
 import { Image } from "expo-image";
@@ -30,12 +31,16 @@ export default function OnboardingPageOne() {
 									contentFit="cover"
 								/>
 							</View>
-							<View className=" flex-[0.333_1] w-full items-center justify-center">
-								<Text>{item.title}</Text>
-								<Text className="text-center w-full">
-									{item.about}
-								</Text>
-								{/* <Button size="custom">{item.action}</Button> */}
+							<View className=" flex-[0.333_1] w-full items-center justify-between pb-[19px]">
+								<View className="w-full flex-1 gap-y-4 items-center">
+									<Text>{item.title}</Text>
+									<Text className="text-center w-full">
+										{item.about}
+									</Text>
+								</View>
+								<View className="w-full px-4 flex-1 ">
+									<Button size="md">{item.action}</Button>
+								</View>
 							</View>
 						</View>
 					);

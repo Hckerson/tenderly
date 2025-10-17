@@ -11,7 +11,7 @@ export default function Index() {
       }}
     >
       <Text className="">No good boy.</Text>
-      <Link href={'/onboarding/page.'}>
+      <Link href={'/onboarding'}>
         move to onboarding
       </Link>
     </View>
