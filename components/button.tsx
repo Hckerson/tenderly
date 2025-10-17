@@ -1,5 +1,6 @@
+import Feather from "@expo/vector-icons/Feather";
 import clsx from "clsx";
-import { Loader2 } from "lucide-react";
+import { Text, View } from "react-native";
 
 interface Button {
 	isLoading?: boolean;
@@ -31,25 +32,30 @@ export default function Button({
 		"rounded-[12px] h-[36px]  lg:h-[46px]": (size = "custom"),
 	};
 	return (
-		<button
+		<View
 			{...rest}
-			className={`                "relative z-0 flex items-center justify-center overflow-hidden shadow-inner",
+			className={`relative z-0 flex items-center justify-center overflow-hidden shadow-inner
                 ${colors}
             ${visibility}
                 ${sizes}`}
 		>
 			{small ? (
 				isLoading ? (
-					<Loader2 className="size-6 animate-spin" />
+					<Feather
+						name="loader"
+						size={24}
+						color="black"
+						className="size-6 animate-spin"
+					/>
 				) : (
-					<p
+					<Text
 						className={`                            "xs:text-base absolute inset-0 flex items-center justify-center text-sm transition-colors duration-150 ease-in"${style}`}
 					>
 						{children}
-					</p>
+					</Text>
 				)
 			) : (
-				<div
+				<View
 					className={clsx(
 						"absolute inset-0 flex h-full items-center justify-center transition-colors duration-150 ease-in hover:bg-none",
 						colors,
@@ -57,15 +63,20 @@ export default function Button({
 					)}
 				>
 					{isLoading && (
-						<span className="pl-2">
-							<Loader2 className="relative flex size-6 animate-spin items-center justify-center" />
-						</span>
+						<View className="pl-2">
+							<Feather
+								name="loader"
+								size={24}
+								color="black"
+								className="relative flex size-6 animate-spin items-center justify-center"
+							/>
+						</View>
 					)}
-					<p className="xs:text-base flex h-full w-full items-center justify-center text-sm">
+					<Text className="xs:text-base flex h-full w-full items-center justify-center text-sm">
 						{children}
-					</p>
-				</div>
+					</Text>
+				</View>
 			)}
-		</button>
+		</View>
 	);
 }

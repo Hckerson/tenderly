@@ -10,30 +10,36 @@ const blurhash =
 const { width } = Dimensions.get("window");
 export default function OnboardingPageOne() {
 	return (
-		<View className="flex-1">
+		<View className="h-screen">
 			<SwiperFlatList
 				data={onboardingData}
-				renderItem={({ item }: { item: OnboardingData }) => (
-					<View
-						style={{ width }}
-						className="flex-1 items-center justify-center"
-					>
-						<View className="">
-							<Image
-								placeholder={{ blurhash }}
-								source={{ uri: item.imageUrl }}
-								contentFit="cover"
-							/>
+				renderItem={({ item }: { item: OnboardingData }) => {
+					return (
+						<View
+							style={[{ width }]}
+							className="items-center h-screen flex-1"
+						>
+							<View className="flex-[0.667_1] justify-center w-full items-center">
+								<Image
+									placeholder={{ blurhash }}
+									style={{
+										height: 400,
+										width: 300,
+									}}
+									source={{ uri: item.imageUrl }}
+									contentFit="cover"
+								/>
+							</View>
+							<View className=" flex-[0.333_1] w-full items-center justify-center">
+								<Text>{item.title}</Text>
+								<Text className="text-center w-full">
+									{item.about}
+								</Text>
+								{/* <Button size="custom">{item.action}</Button> */}
+							</View>
 						</View>
-						<View>
-							<Text>{item.title}</Text>
-							<Text>{item.about}</Text>
-							{/* <Button size="custom">
-                                {item.action}
-                            </Button> */}
-						</View>
-					</View>
-				)}
+					);
+				}}
 			/>
 		</View>
 	);
