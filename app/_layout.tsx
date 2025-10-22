@@ -1,6 +1,16 @@
 import { Stack } from "expo-router";
-import '../global.css'
+import { createContext } from "react";
+import { Dimensions } from "react-native";
+import "../global.css";
+
+const { width } = Dimensions.get("window");
+
+export const WidthContext = createContext(width);
 
 export default function RootLayout() {
-  return <Stack />;
+    return (
+        <WidthContext value={width}>
+            <Stack />
+        </WidthContext>
+    );
 }
