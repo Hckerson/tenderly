@@ -28,6 +28,10 @@ module.exports = {
 				image: {
 					background: "#1f2628",
 				},
+				splash:{
+					dark:"#080A0B",
+					light:"#1A414B"
+				}
 			},
 		},
 	},
