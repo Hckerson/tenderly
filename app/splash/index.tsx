@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 
+const { width } = Dimensions.get("window");
 
 export default function Splash() {
-    return  (
-        <View>
-            <Text>Splash Screen</Text>
+    return (
+        <View style={{ width }} className="flex-1">
+            <View>
+                <Text>BrainBox</Text>
+            </View>
         </View>
-    )
+    );
 }
