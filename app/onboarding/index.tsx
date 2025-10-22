@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/ui/button";
 import { onboardingData } from "@/lib/place-holder";
 import { OnboardingData } from "@/types/placeholders";
 import { Image } from "expo-image";
