@@ -1,4 +1,6 @@
 import Feather from "@expo/vector-icons/Feather";
+import { Link } from "expo-router";
+
 import { View } from "react-native";
 export default function Back() {
     return (

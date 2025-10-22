@@ -15,7 +15,9 @@ module.exports = {
 					"primary-dark":"#070B0F",
 					"secondary-dark": "#02141d",
 					"secondary": "#FAFCFD",
-					"pyramid-green":"#1A414B"
+					"pyramid-green":"#1A414B",
+					"tertiary":"#FAFCFD",
+					"tertiary-dark":"#161A20"
 				},
 				button: {
 					"primary-dark": "#277ed0",
