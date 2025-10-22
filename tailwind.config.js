@@ -13,25 +13,29 @@ module.exports = {
 				background: {
 					primary: "#070b0f",
 					"dark-primary":"#fff",
-					secondary: "#02141d",
+					"secondary-dark": "#02141d",
+					secondary: "#FAFCFD",
+					"pyramid-green":"#1A414B"
 				},
 				button: {
-					primary: "#277ed0",
+					"primary-dark": "#277ed0",
+					primary:"#1A414B"
 				},
 				text: {
-					primary: "#ffffff",
-					secondary: "#d7dcde",
+					"primary-dark": "#ffffff",
+					primary: "#0A0E11",
+					"secondary-dark": "#d7dcde",
+					secondary: "#9D9FA0",
+					blue:"#277ED0"
 				},
 				bubble: {
-					primary: "#277ed0",
+					"primary-dark": "#277ed0",
+					primary:"#F8F8F8"
 				},
 				image: {
-					background: "#1f2628",
+					"background-dark": "#1f2628",
+					background:"#E8EBEC"
 				},
-				splash:{
-					dark:"#080A0B",
-					light:"#1A414B"
-				}
 			},
 		},
 	},

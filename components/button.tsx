@@ -26,7 +26,7 @@ export default function Button({
   return (
     <Pressable
       className={clsx(
-        "shadow-inner relative z-0 flex w-full items-center justify-center overflow-hidden bg-button-primary dark:bg-black",
+        "shadow-inner relative z-0 flex w-full items-center justify-center overflow-hidden bg-button-primary dark:bg-button-primary-dark",
         visibility,
         sizes,
       )}
