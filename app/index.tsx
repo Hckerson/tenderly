@@ -11,7 +11,7 @@ export default function Index() {
             }}
         >
             <Text className="text-4xl">No good boy.</Text>
-            <Link href={"/onboarding"}>move to onboarding</Link>
+            <Link href={"/onboarding"}>move to anywhere</Link>
         </View>
     );
 }
