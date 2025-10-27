@@ -46,7 +46,8 @@ module.exports = {
 					"background-dark": "#1f2628",
 				},
 				stroke:{
-					"primary":"#EFEFEF"
+					"primary":"#EFEFEF",
+					"secondary":"#EFEFEF"
 				}
 			},
 		},

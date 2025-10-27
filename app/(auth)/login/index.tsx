@@ -1,9 +1,10 @@
 import { WidthContext } from "@/app/_layout";
 import Back from "@/components/ui/back";
+import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
 import clsx from "clsx";
-import Button from "@/components/ui/button";
 import { Checkbox } from "expo-checkbox";
+import { Link } from "expo-router";
 import { useContext, useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
@@ -41,7 +42,7 @@ export default function Login() {
                     </Text>
                 </View>
             </View>
-            <View className="h-full rounded-t-[30px] gap-y-8 bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
+            <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
                 <View className="grid gap-y-6">
                     <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
                         <Pressable
@@ -80,7 +81,7 @@ export default function Login() {
                             }}
                             onPress={() => switchTab()}
                             className={clsx(
-                                "tems-center absolute  flex h-[40px] w-[48%] justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
+                                "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
                                 activeTab == "Login" ? "left-1" : "right-1",
                             )}
                         >
@@ -136,24 +137,55 @@ export default function Login() {
                         </View>
                     </View>
                     <View className="flex flex-row justify-between gap-y-2">
-                        <View className="flex-row  gap-x-2 items-center">
+                        <View className="flex-row  items-center gap-x-2">
                             <Checkbox
-                                style={{ height: 17, width: 17, borderColor:"#9D9FA0", borderRadius:5 }}
+                                style={{
+                                    height: 17,
+                                    width: 17,
+                                    borderColor: "#9D9FA0",
+                                    borderRadius: 5,
+                                }}
                                 value={isChecked}
                                 onValueChange={setChecked}
                                 color={isChecked ? "#1A414B" : undefined}
                             />
-                            <Text className="text-text-secondary text-[14px] font-medium dark:text-white">Remember me</Text>
+                            <Text className="text-[14px] font-medium text-text-secondary dark:text-white">
+                                Remember me
+                            </Text>
                         </View>
                         <Text className="text-primary text-[14px] font-medium dark:text-white">
                             Forgot password
                         </Text>
                     </View>
                 </View>
-                <Button size="lg" >
-                    Login
-                </Button>
-                <View></View>
+                <View className="flex gap-y-5">
+                    <Button size="lg">Login</Button>
+                    <View className="flex gap-y-5">
+                        <View className="flex flex-row items-center">
+                            <View className="border-stroke-secondary flex-1 border-t "></View>
+                            <Text className="px-2">Or login with</Text>
+                            <View className="border-stroke-secondary flex-1 border-t "></View>
+                        </View>
+                        <View className="flex h-12 flex-row gap-x-3">
+                            <View
+                                style={{ borderWidth: 1 }}
+                                className="border-1 h-full  flex-1 items-center justify-center rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                            >
+                                <Link href={"/"} className="text-center">
+                                    Google
+                                </Link>
+                            </View>
+                            <View
+                                style={{ borderWidth: 1 }}
+                                className="border-1 h-full  flex-1 items-center justify-center rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                            >
+                                <Link href={"/"} className="text-center">
+                                    Facebook
+                                </Link>
+                            </View>
+                        </View>
+                    </View>
+                </View>
             </View>
         </View>
     );
