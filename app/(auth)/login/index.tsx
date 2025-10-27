@@ -1,6 +1,9 @@
 import { WidthContext } from "@/app/_layout";
 import Back from "@/components/ui/back";
+import Feather from "@expo/vector-icons/Feather";
 import clsx from "clsx";
+import Button from "@/components/ui/button";
+import { Checkbox } from "expo-checkbox";
 import { useContext, useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
@@ -9,6 +12,8 @@ type Options = "Login" | "Signup";
 export default function Login() {
     const width = useContext(WidthContext);
     const [activeTab, setActiveTab] = useState<Options>("Login");
+    const [hiddenStatus, setHiddenStatus] = useState(true);
+    const [isChecked, setChecked] = useState(false);
     const native = Platform.OS === "android" || Platform.OS === "ios";
 
     const switchTab = (e?: Options) => {
@@ -36,8 +41,8 @@ export default function Login() {
                     </Text>
                 </View>
             </View>
-            <View className="h-full rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
-                <View className="grid gap-y-5">
+            <View className="h-full rounded-t-[30px] gap-y-8 bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
+                <View className="grid gap-y-6">
                     <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
                         <Pressable
                             onPress={() => switchTab("Login")}
@@ -48,7 +53,7 @@ export default function Login() {
                                     "",
                                     activeTab == "Login"
                                         ? "text-[14px] font-medium text-text-primary-dark "
-                                        : "text-text-secondary-dark",
+                                        : "text-text-secondary dark:text-text-secondary-dark",
                                 )}
                             >
                                 Login
@@ -63,7 +68,7 @@ export default function Login() {
                                     "",
                                     activeTab == "Signup"
                                         ? "text-[14px] font-medium text-text-primary-dark "
-                                        : "text-text-secondary-dark",
+                                        : "text-text-secondary dark:text-text-secondary-dark",
                                 )}
                             >
                                 Signup
@@ -81,7 +86,7 @@ export default function Login() {
                         >
                             <Text
                                 className={clsx(
-                                    "text-center text-[14px] font-medium text-text-primary-dark",
+                                    "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
                                 )}
                             >
                                 {activeTab}
@@ -91,28 +96,63 @@ export default function Login() {
                     <View className="flex flex-col gap-y-2">
                         <Text className="text-text-secondary">Email</Text>
                         <TextInput
-                            className="bg-background-pent border-1 h-12 rounded-[10px] border-[#EFEFEF] placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary pl-4"
+                            className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
                             style={{ borderWidth: 1 }}
                             placeholder="wadewarren@gmail.com"
+                            textContentType="emailAddress"
                             inputMode="text"
                         />
                     </View>
                     <View className="flex flex-col gap-y-2">
                         <Text className="text-text-secondary">Password</Text>
                         <View
-                            className="bg-background-pent border-1 h-12 flex justify-center rounded-[10px] border-[#EFEFEF] placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary pl-4"
+                            className="border-1  relative flex h-12 justify-center rounded-[10px] border-[#EFEFEF] bg-background-pent placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary "
                             style={{ borderWidth: 1 }}
                         >
                             <TextInput
-                                className="bg-background-pent h-full rounded-[10px] border-[#EFEFEF] placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                className="h-full rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
                                 placeholder="*********"
                                 inputMode="text"
+                                textContentType="password"
+                                secureTextEntry={hiddenStatus}
                             />
+                            <View className="absolute right-1 z-10 flex w-[40px] items-center">
+                                {hiddenStatus ? (
+                                    <Feather
+                                        name="eye-off"
+                                        size={18}
+                                        color="black"
+                                        onPress={() => setHiddenStatus(false)}
+                                    />
+                                ) : (
+                                    <Feather
+                                        name="eye"
+                                        size={18}
+                                        color="black"
+                                        onPress={() => setHiddenStatus(true)}
+                                    />
+                                )}
+                            </View>
                         </View>
                     </View>
-                    <View className="flex flex-col gap-y-2"></View>
+                    <View className="flex flex-row justify-between gap-y-2">
+                        <View className="flex-row  gap-x-2 items-center">
+                            <Checkbox
+                                style={{ height: 17, width: 17, borderColor:"#9D9FA0", borderRadius:5 }}
+                                value={isChecked}
+                                onValueChange={setChecked}
+                                color={isChecked ? "#1A414B" : undefined}
+                            />
+                            <Text className="text-text-secondary text-[14px] font-medium dark:text-white">Remember me</Text>
+                        </View>
+                        <Text className="text-primary text-[14px] font-medium dark:text-white">
+                            Forgot password
+                        </Text>
+                    </View>
                 </View>
-                <View></View>
+                <Button size="lg" >
+                    Login
+                </Button>
                 <View></View>
             </View>
         </View>

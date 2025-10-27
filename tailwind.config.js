@@ -36,7 +36,6 @@ module.exports = {
 					"primary-dark": "#0A0E11",
 					"secondary-dark": "#d7dcde",
 					"blue":"#277ED0"
-
 				},
 				bubble: {
 					"primary":"#F8F8F8",
