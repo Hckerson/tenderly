@@ -4,9 +4,13 @@ import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
 import clsx from "clsx";
 import { Checkbox } from "expo-checkbox";
+import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useContext, useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
+
+const google = require("@/assets/svgs/google.svg");
+const facebook = require("@/assets/svgs/facebook.svg");
 
 type Options = "Login" | "Signup";
 
@@ -162,23 +166,25 @@ export default function Login() {
                     <Button size="lg">Login</Button>
                     <View className="flex gap-y-5">
                         <View className="flex flex-row items-center">
-                            <View className="border-stroke-secondary flex-1 border-t "></View>
+                            <View className="flex-1 border-t border-stroke-secondary "></View>
                             <Text className="px-2">Or login with</Text>
-                            <View className="border-stroke-secondary flex-1 border-t "></View>
+                            <View className="flex-1 border-t border-stroke-secondary "></View>
                         </View>
                         <View className="flex h-12 flex-row gap-x-3">
                             <View
                                 style={{ borderWidth: 1 }}
-                                className="border-1 h-full  flex-1 items-center justify-center rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
                             >
+                                <Image style={{height:25, width:25}}  source={google} />
                                 <Link href={"/"} className="text-center">
                                     Google
                                 </Link>
                             </View>
                             <View
                                 style={{ borderWidth: 1 }}
-                                className="border-1 h-full  flex-1 items-center justify-center rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
                             >
+                                <Image style={{height:25, width:25}} source={facebook} />
                                 <Link href={"/"} className="text-center">
                                     Facebook
                                 </Link>
