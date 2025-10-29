@@ -16,7 +16,7 @@ type Options = "Login" | "Signup";
 
 export default function Signup() {
     const width = useContext(WidthContext);
-    const [activeTab, setActiveTab] = useState<Options>("Login");
+    const [activeTab, setActiveTab] = useState<Options>("Signup");
     const [hiddenStatus, setHiddenStatus] = useState(true);
     const [isChecked, setChecked] = useState(false);
     const native = Platform.OS === "android" || Platform.OS === "ios";
@@ -162,7 +162,12 @@ export default function Signup() {
                         </Text>
                     </View>
                 </View>
-                <View className="flex gap-y-5">
+                <View
+                    className={clsx(
+                        " gap-y-5",
+                        activeTab == "Login" ? "flex " : "hidden",
+                    )}
+                >
                     <Button size="lg">Login</Button>
                     <View className="flex gap-y-5">
                         <View className="flex flex-row items-center">
@@ -175,7 +180,10 @@ export default function Signup() {
                                 style={{ borderWidth: 1 }}
                                 className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
                             >
-                                <Image style={{height:25, width:25}}  source={google} />
+                                <Image
+                                    style={{ height: 25, width: 25 }}
+                                    source={google}
+                                />
                                 <Link href={"/"} className="text-center">
                                     Google
                                 </Link>
@@ -184,7 +192,10 @@ export default function Signup() {
                                 style={{ borderWidth: 1 }}
                                 className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
                             >
-                                <Image style={{height:25, width:25}} source={facebook} />
+                                <Image
+                                    style={{ height: 25, width: 25 }}
+                                    source={facebook}
+                                />
                                 <Link href={"/"} className="text-center">
                                     Facebook
                                 </Link>
