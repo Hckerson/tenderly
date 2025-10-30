@@ -3,7 +3,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { createContext } from "react";
 import { Dimensions } from "react-native";
 
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
 
 import "../global.css";
 
@@ -15,7 +15,7 @@ export const WidthContext = createContext(width);
 export default function RootLayout() {
     return (
         <WidthContext value={width}>
-            <SafeAreaProvider>
+            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
                 <Stack />
             </SafeAreaProvider>
         </WidthContext>

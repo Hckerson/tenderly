@@ -1,6 +1,7 @@
 import { WidthContext } from "@/app/_layout";
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
+import clsx from "clsx";
 import { Image } from "expo-image";
 import { useContext, useState } from "react";
 import { Platform, Text, TextInput, View } from "react-native";
@@ -9,7 +10,8 @@ const inbox = require("@/assets/svgs/inbox.svg");
 
 export default function ForgetPassword() {
     const width = useContext(WidthContext);
-    const [otpSent, setOptSent] = useState(true);
+    const [otpSent, setOptSent] = useState<boolean>(false);
+    const [isVerifyingOtp, setIsVerifyingOtp] = useState<boolean>(false)
     const native = Platform.OS === "android" || Platform.OS === "ios";
 
     return (
@@ -17,7 +19,7 @@ export default function ForgetPassword() {
             style={{ width }}
             className="relative flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
         >
-            <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">
+            <View className={clsx("box-border flex w-full gap-y-8 px-5  pb-10  pt-10")}>
                 <Back />
                 <View className="flex">
                     <Text className="w-3/4 text-2xl font-semibold  text-text-primary">
