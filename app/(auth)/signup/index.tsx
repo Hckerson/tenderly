@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Checkbox } from "expo-checkbox";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
+
 import { useContext, useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
@@ -14,9 +15,9 @@ const facebook = require("@/assets/svgs/facebook.svg");
 
 type Options = "Login" | "Signup";
 
-export default function Login() {
+export default function Signup() {
     const width = useContext(WidthContext);
-    const [activeTab, setActiveTab] = useState<Options>("Login");
+    const [activeTab, setActiveTab] = useState<Options>("Signup");
     const [hiddenStatus, setHiddenStatus] = useState(true);
     const [isChecked, setChecked] = useState(false);
     const native = Platform.OS === "android" || Platform.OS === "ios";

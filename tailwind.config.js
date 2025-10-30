@@ -21,6 +21,7 @@ module.exports = {
 					"tertiary-dark":"#161A20",
 					"quad-dark":"#070B0F",
 					"pyramid-green":"#1A414B",
+					"light-green":"#E7F7F1"
 
 				},
 				button: {
@@ -35,6 +36,7 @@ module.exports = {
 					"secondary": "#9D9FA0",
 					"primary-dark": "#0A0E11",
 					"secondary-dark": "#d7dcde",
+					"tertiary":"#1F363D",
 					"blue":"#277ED0"
 				},
 				bubble: {

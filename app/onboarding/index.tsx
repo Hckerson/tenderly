@@ -4,6 +4,8 @@ import { OnboardingData } from "@/types/placeholders";
 import { Image } from "expo-image";
 import { Dimensions, Text, View } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
+import { WidthContext } from "../_layout";
+import { useContext } from "react";
 
 const blurhash =
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -18,9 +20,8 @@ const generateUri = (relativePath: string) => {
             return require("@/assets/images/onboard-image-three.png");
     }
 };
-
-const { width } = Dimensions.get("window");
 export default function OnboardingPageOne() {
+    const width = useContext(WidthContext).valueOf()
     return (
         <View style={[{ width }]} className="h-screen">
             <SwiperFlatList
