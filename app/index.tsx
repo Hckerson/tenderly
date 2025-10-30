@@ -11,7 +11,7 @@ export default function Index() {
             }}
         >
             <Text className="text-4xl">No good boy.</Text>
-            <Link href={"/signup"}>move to anywhere</Link>
+            <Link href={"/forget-password"}>move to anywhere</Link>
         </View>
     );
 }

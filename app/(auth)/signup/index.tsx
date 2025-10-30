@@ -14,9 +14,9 @@ const facebook = require("@/assets/svgs/facebook.svg");
 
 type Options = "Login" | "Signup";
 
-export default function Signup() {
+export default function Login() {
     const width = useContext(WidthContext);
-    const [activeTab, setActiveTab] = useState<Options>("Signup");
+    const [activeTab, setActiveTab] = useState<Options>("Login");
     const [hiddenStatus, setHiddenStatus] = useState(true);
     const [isChecked, setChecked] = useState(false);
     const native = Platform.OS === "android" || Platform.OS === "ios";
@@ -47,162 +47,340 @@ export default function Signup() {
                 </View>
             </View>
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
-                <View className="grid gap-y-6">
-                    <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
-                        <Pressable
-                            onPress={() => switchTab("Login")}
-                            className="flex flex-1 items-center justify-center"
-                        >
-                            <Text
-                                className={clsx(
-                                    "",
-                                    activeTab == "Login"
-                                        ? "text-[14px] font-medium text-text-primary-dark "
-                                        : "text-text-secondary dark:text-text-secondary-dark",
-                                )}
+                {activeTab === "Signup" ? (
+                    <View className="grid gap-y-6">
+                        <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
+                            <Pressable
+                                onPress={() => switchTab("Login")}
+                                className="flex flex-1 items-center justify-center"
                             >
-                                Login
-                            </Text>
-                        </Pressable>
-                        <Pressable
-                            onPress={() => switchTab("Signup")}
-                            className="flex flex-1 items-center justify-center"
-                        >
-                            <Text
-                                className={clsx(
-                                    "",
-                                    activeTab == "Signup"
-                                        ? "text-[14px] font-medium text-text-primary-dark "
-                                        : "text-text-secondary dark:text-text-secondary-dark",
-                                )}
+                                <Text
+                                    className={clsx(
+                                        "",
+                                        activeTab == "Signup"
+                                            ? "text-text-secondary dark:text-text-secondary-dark"
+                                            : "text-[14px] font-medium text-text-primary-dark ",
+                                    )}
+                                >
+                                    Login
+                                </Text>
+                            </Pressable>
+                            <Pressable
+                                onPress={() => switchTab("Signup")}
+                                className="flex flex-1 items-center justify-center"
                             >
-                                Signup
-                            </Text>
-                        </Pressable>
-                        <Pressable
-                            style={{
-                                transform: native ? [{ translateY: 4 }] : [],
-                            }}
-                            onPress={() => switchTab()}
-                            className={clsx(
-                                "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
-                                activeTab == "Login" ? "left-1" : "right-1",
-                            )}
-                        >
-                            <Text
-                                className={clsx(
-                                    "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
-                                )}
-                            >
-                                {activeTab}
-                            </Text>
-                        </Pressable>
-                    </View>
-                    <View className="flex flex-col gap-y-2">
-                        <Text className="text-text-secondary">Email</Text>
-                        <TextInput
-                            className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
-                            style={{ borderWidth: 1 }}
-                            placeholder="wadewarren@gmail.com"
-                            textContentType="emailAddress"
-                            inputMode="text"
-                        />
-                    </View>
-                    <View className="flex flex-col gap-y-2">
-                        <Text className="text-text-secondary">Password</Text>
-                        <View
-                            className="border-1  relative flex h-12 justify-center rounded-[10px] border-[#EFEFEF] bg-background-pent placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary "
-                            style={{ borderWidth: 1 }}
-                        >
-                            <TextInput
-                                className="h-full rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
-                                placeholder="*********"
-                                inputMode="text"
-                                textContentType="password"
-                                secureTextEntry={hiddenStatus}
-                            />
-                            <View className="absolute right-1 z-10 flex w-[40px] items-center">
-                                {hiddenStatus ? (
-                                    <Feather
-                                        name="eye-off"
-                                        size={18}
-                                        color="black"
-                                        onPress={() => setHiddenStatus(false)}
-                                    />
-                                ) : (
-                                    <Feather
-                                        name="eye"
-                                        size={18}
-                                        color="black"
-                                        onPress={() => setHiddenStatus(true)}
-                                    />
-                                )}
-                            </View>
-                        </View>
-                    </View>
-                    <View className="flex flex-row justify-between gap-y-2">
-                        <View className="flex-row  items-center gap-x-2">
-                            <Checkbox
+                                <Text
+                                    className={clsx(
+                                        "",
+                                        activeTab == "Signup"
+                                            ? "text-[14px] font-medium text-text-primary-dark "
+                                            : "text-text-secondary dark:text-text-secondary-dark",
+                                    )}
+                                >
+                                    Signup
+                                </Text>
+                            </Pressable>
+                            <Pressable
                                 style={{
-                                    height: 17,
-                                    width: 17,
-                                    borderColor: "#9D9FA0",
-                                    borderRadius: 5,
+                                    transform: native
+                                        ? [{ translateY: 4 }]
+                                        : [],
                                 }}
-                                value={isChecked}
-                                onValueChange={setChecked}
-                                color={isChecked ? "#1A414B" : undefined}
+                                onPress={() => switchTab()}
+                                className={clsx(
+                                    "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
+                                    activeTab == "Signup"
+                                        ? "right-1"
+                                        : "left-1",
+                                )}
+                            >
+                                <Text
+                                    className={clsx(
+                                        "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
+                                    )}
+                                >
+                                    {activeTab}
+                                </Text>
+                            </Pressable>
+                        </View>
+                        <View className="flex w-full flex-row justify-center gap-x-4">
+                            <View className="flex-1 flex-col gap-y-2">
+                                <Text className="text-text-secondary">
+                                    First Name
+                                </Text>
+                                <TextInput
+                                    className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    style={{ borderWidth: 1 }}
+                                    placeholder="wade"
+                                    textContentType="name"
+                                    inputMode="text"
+                                />
+                            </View>
+                            <View className="flex-1 flex-col gap-y-2">
+                                <Text className="text-text-secondary">
+                                    Last Name
+                                </Text>
+                                <TextInput
+                                    className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    style={{ borderWidth: 1 }}
+                                    placeholder="warren"
+                                    textContentType="name"
+                                    inputMode="text"
+                                />
+                            </View>
+                        </View>
+                        <View className="flex flex-col gap-y-2">
+                            <Text className="text-text-secondary">Email</Text>
+                            <TextInput
+                                className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                style={{ borderWidth: 1 }}
+                                placeholder="wadewarren@gmail.com"
+                                textContentType="emailAddress"
+                                inputMode="text"
                             />
-                            <Text className="text-[14px] font-medium text-text-secondary dark:text-white">
-                                Remember me
+                        </View>
+                        <View className="flex flex-col gap-y-2">
+                            <Text className="text-text-secondary">
+                                Password
+                            </Text>
+                            <View
+                                className="border-1  relative flex h-12 justify-center rounded-[10px] border-[#EFEFEF] bg-background-pent placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary "
+                                style={{ borderWidth: 1 }}
+                            >
+                                <TextInput
+                                    className="h-full rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    placeholder="*********"
+                                    inputMode="text"
+                                    textContentType="password"
+                                    secureTextEntry={hiddenStatus}
+                                />
+                                <View className="absolute right-1 z-10 flex w-[40px] items-center">
+                                    {hiddenStatus ? (
+                                        <Feather
+                                            name="eye-off"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(false)
+                                            }
+                                        />
+                                    ) : (
+                                        <Feather
+                                            name="eye"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(true)
+                                            }
+                                        />
+                                    )}
+                                </View>
+                            </View>
+                        </View>
+                        <View className="flex flex-col gap-y-2">
+                            <Text className="text-text-secondary">
+                                Confirm password
+                            </Text>
+                            <View
+                                className="border-1  relative flex h-12 justify-center rounded-[10px] border-[#EFEFEF] bg-background-pent placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary "
+                                style={{ borderWidth: 1 }}
+                            >
+                                <TextInput
+                                    className="h-full rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    placeholder="*********"
+                                    inputMode="text"
+                                    textContentType="password"
+                                    secureTextEntry={hiddenStatus}
+                                />
+                                <View className="absolute right-1 z-10 flex w-[40px] items-center">
+                                    {hiddenStatus ? (
+                                        <Feather
+                                            name="eye-off"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(false)
+                                            }
+                                        />
+                                    ) : (
+                                        <Feather
+                                            name="eye"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(true)
+                                            }
+                                        />
+                                    )}
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                ) : (
+                    <View className="grid gap-y-6">
+                        <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
+                            <Pressable
+                                onPress={() => switchTab("Login")}
+                                className="flex flex-1 items-center justify-center"
+                            >
+                                <Text
+                                    className={clsx(
+                                        "",
+                                        activeTab == "Login"
+                                            ? "text-[14px] font-medium text-text-primary-dark "
+                                            : "text-text-secondary dark:text-text-secondary-dark",
+                                    )}
+                                >
+                                    Login
+                                </Text>
+                            </Pressable>
+                            <Pressable
+                                onPress={() => switchTab("Signup")}
+                                className="flex flex-1 items-center justify-center"
+                            >
+                                <Text
+                                    className={clsx(
+                                        "",
+                                        activeTab == "Login"
+                                            ? "text-text-secondary dark:text-text-secondary-dark"
+                                            : "text-[14px] font-medium text-text-primary-dark ",
+                                    )}
+                                >
+                                    Signup
+                                </Text>
+                            </Pressable>
+                            <Pressable
+                                style={{
+                                    transform: native
+                                        ? [{ translateY: 4 }]
+                                        : [],
+                                }}
+                                onPress={() => switchTab()}
+                                className={clsx(
+                                    "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
+                                    activeTab == "Login" ? "left-1" : "right-1",
+                                )}
+                            >
+                                <Text
+                                    className={clsx(
+                                        "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
+                                    )}
+                                >
+                                    {activeTab}
+                                </Text>
+                            </Pressable>
+                        </View>
+                        <View className="flex flex-col gap-y-2">
+                            <Text className="text-text-secondary">Email</Text>
+                            <TextInput
+                                className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                style={{ borderWidth: 1 }}
+                                placeholder="wadewarren@gmail.com"
+                                textContentType="emailAddress"
+                                inputMode="text"
+                            />
+                        </View>
+                        <View className="flex flex-col gap-y-2">
+                            <Text className="text-text-secondary">
+                                Password
+                            </Text>
+                            <View
+                                className="border-1  relative flex h-12 justify-center rounded-[10px] border-[#EFEFEF] bg-background-pent placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary "
+                                style={{ borderWidth: 1 }}
+                            >
+                                <TextInput
+                                    className="h-full rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    placeholder="*********"
+                                    inputMode="text"
+                                    textContentType="password"
+                                    secureTextEntry={hiddenStatus}
+                                />
+                                <View className="absolute right-1 z-10 flex w-[40px] items-center">
+                                    {hiddenStatus ? (
+                                        <Feather
+                                            name="eye-off"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(false)
+                                            }
+                                        />
+                                    ) : (
+                                        <Feather
+                                            name="eye"
+                                            size={18}
+                                            color="black"
+                                            onPress={() =>
+                                                setHiddenStatus(true)
+                                            }
+                                        />
+                                    )}
+                                </View>
+                            </View>
+                        </View>
+                        <View className="flex flex-row justify-between gap-y-2">
+                            <View className="flex-row  items-center gap-x-2">
+                                <Checkbox
+                                    style={{
+                                        height: 17,
+                                        width: 17,
+                                        borderColor: "#9D9FA0",
+                                        borderRadius: 5,
+                                    }}
+                                    value={isChecked}
+                                    onValueChange={setChecked}
+                                    color={isChecked ? "#1A414B" : undefined}
+                                />
+                                <Text className="text-[14px] font-medium text-text-secondary dark:text-white">
+                                    Remember me
+                                </Text>
+                            </View>
+                            <Text className="text-primary text-[14px] font-medium dark:text-white">
+                                Forgot password
                             </Text>
                         </View>
-                        <Text className="text-primary text-[14px] font-medium dark:text-white">
-                            Forgot password
-                        </Text>
                     </View>
-                </View>
-                <View
-                    className={clsx(
-                        " gap-y-5",
-                        activeTab == "Login" ? "flex " : "hidden",
-                    )}
-                >
-                    <Button size="lg">Login</Button>
-                    <View className="flex gap-y-5">
-                        <View className="flex flex-row items-center">
-                            <View className="flex-1 border-t border-stroke-secondary "></View>
-                            <Text className="px-2">Or login with</Text>
-                            <View className="flex-1 border-t border-stroke-secondary "></View>
-                        </View>
-                        <View className="flex h-12 flex-row gap-x-3">
-                            <View
-                                style={{ borderWidth: 1 }}
-                                className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
-                            >
-                                <Image
-                                    style={{ height: 25, width: 25 }}
-                                    source={google}
-                                />
-                                <Link href={"/"} className="text-center">
-                                    Google
-                                </Link>
+                )}
+                {activeTab == "Login" ? (
+                    <View className={clsx(" gap-y-5")}>
+                        <Button size="lg">Login</Button>
+                        <View className="flex gap-y-5">
+                            <View className="flex flex-row items-center">
+                                <View className="flex-1 border-t border-stroke-secondary "></View>
+                                <Text className="px-2">Or login with</Text>
+                                <View className="flex-1 border-t border-stroke-secondary "></View>
                             </View>
-                            <View
-                                style={{ borderWidth: 1 }}
-                                className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
-                            >
-                                <Image
-                                    style={{ height: 25, width: 25 }}
-                                    source={facebook}
-                                />
-                                <Link href={"/"} className="text-center">
-                                    Facebook
-                                </Link>
+                            <View className="flex h-12 flex-row gap-x-3">
+                                <View
+                                    style={{ borderWidth: 1 }}
+                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                >
+                                    <Image
+                                        style={{ height: 25, width: 25 }}
+                                        source={google}
+                                    />
+                                    <Link href={"/"} className="text-center">
+                                        Google
+                                    </Link>
+                                </View>
+                                <View
+                                    style={{ borderWidth: 1 }}
+                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                >
+                                    <Image
+                                        style={{ height: 25, width: 25 }}
+                                        source={facebook}
+                                    />
+                                    <Link href={"/"} className="text-center">
+                                        Facebook
+                                    </Link>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
+                ) : (
+                    <Button size="lg">Register</Button>
+                )}
             </View>
         </View>
     );
