@@ -4,6 +4,7 @@ import Button from "@/components/ui/button";
 import clsx from "clsx";
 import { Image } from "expo-image";
 import { useContext, useState } from "react";
+import Otp from "@/components/ui/otp";
 import { Platform, Text, TextInput, View } from "react-native";
 
 const inbox = require("@/assets/svgs/inbox.svg");
@@ -11,7 +12,8 @@ const inbox = require("@/assets/svgs/inbox.svg");
 export default function ForgetPassword() {
     const width = useContext(WidthContext);
     const [otpSent, setOptSent] = useState<boolean>(false);
-    const [isVerifyingOtp, setIsVerifyingOtp] = useState<boolean>(false)
+    const [isVerifyingOtp, setIsVerifyingOtp] = useState<boolean>(true);
+    const [isOtpCorrect, setIsOtpCorrect] = useState<boolean>(true);
     const native = Platform.OS === "android" || Platform.OS === "ios";
 
     return (
@@ -19,7 +21,11 @@ export default function ForgetPassword() {
             style={{ width }}
             className="relative flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
         >
-            <View className={clsx("box-border flex w-full gap-y-8 px-5  pb-10  pt-10")}>
+            <View
+                className={clsx(
+                    "box-border flex w-full gap-y-8 px-5  pb-10  pt-10",
+                )}
+            >
                 <Back />
                 <View className="flex">
                     <Text className="w-3/4 text-2xl font-semibold  text-text-primary">
@@ -31,30 +37,68 @@ export default function ForgetPassword() {
                 </View>
             </View>
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
-                <View className="grid gap-y-6">
-                    <View className="flex flex-col gap-y-2">
-                        <Text className="text-text-secondary">Email</Text>
-                        <TextInput
-                            className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
-                            style={{ borderWidth: 1 }}
-                            placeholder="wadewarren@gmail.com"
-                            textContentType="emailAddress"
-                            inputMode="text"
-                        />
-                    </View>
-                    <View className="flex flex-col gap-y-2">
-                        <Text className="text-text-secondary">Phone</Text>
-                        <TextInput
-                            className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
-                            style={{ borderWidth: 1 }}
-                            placeholder="Enter your phone number"
-                            textContentType="telephoneNumber"
-                            inputMode="text"
-                        />
-                    </View>
-                </View>
+                {isVerifyingOtp ? (
+                    <View className="flex gap-y-7">
+                        <View className="box-border w-full">
+                            <View>
+                                <Text className="text-center text-text-primary-dark dark:text-white">
+                                    Verify your account
+                                </Text>
+                                <Text className="text-center text-[12px] text-text-secondary">
+                                    Please enter the 5-digit verification code
+                                    we sent to your registered email to proceed
+                                    securely.
+                                </Text>
+                            </View>
+                            <View className="box-border">
+                                <Otp number={5}/>
+                            </View>
+                        </View>
+                        <View className="flex gap-y-5">
+                            <Button size="lg">Continue</Button>
+                            <Text className="text-center text-[12px] text-text-secondary">
+                                {isOtpCorrect
+                                    ? " Didn't receive code?"
+                                    : "Wrong OTP"}
 
-                <Button size="lg">Continue</Button>
+                                <Text className="text-text-primary-dark">
+                                    {" "}
+                                    Resend now
+                                </Text>
+                            </Text>
+                        </View>
+                    </View>
+                ) : (
+                    <View className="flex-1 gap-y-5">
+                        <View className="flex gap-y-6">
+                            <View className="flex flex-col gap-y-2">
+                                <Text className="text-text-secondary">
+                                    Email
+                                </Text>
+                                <TextInput
+                                    className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    style={{ borderWidth: 1 }}
+                                    placeholder="wadewarren@gmail.com"
+                                    textContentType="emailAddress"
+                                    inputMode="text"
+                                />
+                            </View>
+                            <View className="flex flex-col gap-y-2">
+                                <Text className="text-text-secondary">
+                                    Phone
+                                </Text>
+                                <TextInput
+                                    className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
+                                    style={{ borderWidth: 1 }}
+                                    placeholder="Enter your phone number"
+                                    textContentType="telephoneNumber"
+                                    inputMode="text"
+                                />
+                            </View>
+                        </View>
+                        <Button size="lg">Continue</Button>
+                    </View>
+                )}
             </View>
             {otpSent && (
                 <View className="absolute h-full w-full bg-black/80">
@@ -62,14 +106,17 @@ export default function ForgetPassword() {
                         <View className="max-h-[343px] w-full max-w-[312px] rounded-3xl bg-background-pent p-5 pt-7 dark:bg-background-tertiary-dark">
                             <View className="flex w-full items-center gap-y-4">
                                 <View className="flex w-full items-center gap-y-5">
-                                    <View className="bg-background-light-green size-[100px] rounded-full flex items-center justify-center dark:bg-background-primary-dark">
-                                        <Image style={{height:50, width:50}} source={inbox} />
+                                    <View className="flex size-[100px] items-center justify-center rounded-full bg-background-light-green dark:bg-background-primary-dark">
+                                        <Image
+                                            style={{ height: 50, width: 50 }}
+                                            source={inbox}
+                                        />
                                     </View>
                                     <View>
-                                        <Text className="text-text-tertiary text-center text-[24px]">
+                                        <Text className="text-center text-[24px] text-text-tertiary">
                                             Check your Email
                                         </Text>
-                                        <Text className="text-text-tertiary text-center text-[16px]">
+                                        <Text className="text-center text-[16px] text-text-tertiary">
                                             We've emailed you a password reset
                                             link. valid for 10 minutes.
                                         </Text>
