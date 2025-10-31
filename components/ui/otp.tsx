@@ -9,6 +9,7 @@ import {
 } from 'react-native-confirmation-code-field';
 
 export default function Otp({ number }: { number: number }) {
+  const {Value, Text:AnimatedText} = Animated
     return <View>
 
     </View>;
