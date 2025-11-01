@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Animated, View } from "react-native";
+import { Animated, Text, View } from "react-native";
 
 import styles, {
     ACTIVE_CELL_BG_COLOR,
@@ -9,6 +9,7 @@ import styles, {
     NOT_EMPTY_CELL_BG_COLOR,
 } from "@/lib/constants";
 
+import clsx from "clsx";
 import {
     CodeField,
     Cursor,
@@ -28,11 +29,20 @@ interface RenderedCell {
     isFocused: boolean;
 }
 
-export default function Otp({ number }: { number: number }) {
+export default function Otp({
+    number,
+    setter,
+    otpStatus
+}: {
+    number: number;
+    otpStatus: boolean
+    setter: (value: boolean) => void;
+}) {
     const { Value, Text: AnimatedText } = Animated;
     const animationsColor = [...new Array(number)].map(() => new Value(0));
     const animationScale = [...new Array(number)].map(() => new Value(0));
     const [value, setValue] = useState<string>("");
+
     const [props, getCellOnLayout] = useClearByFocusCell({ value, setValue });
     const ref = useBlurOnFulfill({ value, cellCount: number });
 
@@ -44,7 +54,7 @@ export default function Otp({ number }: { number: number }) {
                 duration: 250,
             }),
             Animated.spring(animationScale[index], {
-                toValue: hasValue ? 0 : 1,
+                toValue: 1,
                 useNativeDriver: false,
             }),
         ]).start();
@@ -89,8 +99,29 @@ export default function Otp({ number }: { number: number }) {
 
         return (
             <View key={index} onLayout={getCellOnLayout(index)}>
-                <AnimatedText style={[styles.cell, animatedCellStyle]}>
-                    {symbol || (isFocused ? <Cursor /> : null)}
+                <AnimatedText
+                    style={[styles.cell, animatedCellStyle]}
+                    className={clsx(
+                        "text-[20px] font-semibold ",
+                        otpStatus
+                            ? "text-text-primary-dark dark:text-white"
+                            : "text-text-danger",
+                    )}
+                >
+                    {symbol ||
+                        (isFocused ? (
+                            <Cursor />
+                        ) : (
+                            <Text
+                                className={clsx(
+                                    otpStatus
+                                        ? "text-text-primary-dark dark:text-white"
+                                        : "text-text-danger",
+                                )}
+                            >
+                                -
+                            </Text>
+                        ))}
                 </AnimatedText>
             </View>
         );

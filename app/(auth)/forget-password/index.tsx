@@ -52,7 +52,7 @@ export default function ForgetPassword() {
                                 </Text>
                             </View>
                             <View className="box-border w-full items-center">
-                                <Otp number={5}/>
+                                <Otp number={5} setter={setIsOtpCorrect} otpStatus = {isOtpCorrect} />
                             </View>
                         </View>
                         <View className="flex gap-y-5">

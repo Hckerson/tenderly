@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cell: {
-    marginHorizontal: 8,
+    marginHorizontal: 7,
     height: CELL_SIZE,
     width: CELL_SIZE,
     lineHeight: CELL_SIZE - 5,
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: '#3759b8',
     backgroundColor: '#fff',
 
     // IOS

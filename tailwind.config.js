@@ -37,7 +37,8 @@ module.exports = {
 					"primary-dark": "#0A0E11",
 					"secondary-dark": "#d7dcde",
 					"tertiary":"#1F363D",
-					"blue":"#277ED0"
+					"blue":"#277ED0",
+					"danger":"#F31F0C"
 				},
 				bubble: {
 					"primary":"#F8F8F8",
