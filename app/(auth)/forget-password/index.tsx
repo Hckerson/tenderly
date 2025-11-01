@@ -3,6 +3,7 @@ import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
 import clsx from "clsx";
 import { Image } from "expo-image";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useContext, useState } from "react";
 import Otp from "@/components/ui/otp";
 import { Platform, Text, TextInput, View } from "react-native";
@@ -38,9 +39,9 @@ export default function ForgetPassword() {
             </View>
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
                 {isVerifyingOtp ? (
-                    <View className="flex gap-y-7">
-                        <View className="box-border w-full">
-                            <View>
+                    <View className="flex gap-y-7 w-full">
+                        <View className="box-border w-full gap-y-4  ">
+                            <View className="gap-y-4">
                                 <Text className="text-center text-text-primary-dark dark:text-white">
                                     Verify your account
                                 </Text>
@@ -50,7 +51,7 @@ export default function ForgetPassword() {
                                     securely.
                                 </Text>
                             </View>
-                            <View className="box-border">
+                            <View className="box-border w-full items-center">
                                 <Otp number={5}/>
                             </View>
                         </View>
