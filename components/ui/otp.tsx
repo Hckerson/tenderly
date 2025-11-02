@@ -1,3 +1,4 @@
+import { useColorScheme } from "nativewind";
 import { useState } from "react";
 import { Animated, Text, View } from "react-native";
 
@@ -32,12 +33,13 @@ interface RenderedCell {
 export default function Otp({
     number,
     setter,
-    otpStatus
+    otpStatus,
 }: {
     number: number;
-    otpStatus: boolean
+    otpStatus: boolean;
     setter: (value: boolean) => void;
 }) {
+    const { colorScheme, setColorScheme } = useColorScheme();
     const { Value, Text: AnimatedText } = Animated;
     const animationsColor = [...new Array(number)].map(() => new Value(0));
     const animationScale = [...new Array(number)].map(() => new Value(0));
@@ -45,6 +47,12 @@ export default function Otp({
 
     const [props, getCellOnLayout] = useClearByFocusCell({ value, setValue });
     const ref = useBlurOnFulfill({ value, cellCount: number });
+
+    const defaultCellColor =
+        colorScheme == "dark" ? "#0A0E11" : DEFAULT_CELL_BG_COLOR;
+
+    const activeCellColor =
+        colorScheme == "dark" ? "#1a2630" : ACTIVE_CELL_BG_COLOR;
 
     const cellAnimation = ({ index, isFocused, hasValue }: AnimatedProps) => {
         Animated.parallel([
@@ -67,17 +75,11 @@ export default function Otp({
             backgroundColor: hasValue
                 ? animationScale[index].interpolate({
                       inputRange: [0, 1],
-                      outputRange: [
-                          NOT_EMPTY_CELL_BG_COLOR,
-                          ACTIVE_CELL_BG_COLOR,
-                      ],
+                      outputRange: [NOT_EMPTY_CELL_BG_COLOR, activeCellColor],
                   })
                 : animationsColor[index].interpolate({
                       inputRange: [0, 1],
-                      outputRange: [
-                          DEFAULT_CELL_BG_COLOR,
-                          ACTIVE_CELL_BG_COLOR,
-                      ],
+                      outputRange: [defaultCellColor, activeCellColor],
                   }),
             borderRadius: animationScale[index].interpolate({
                 inputRange: [0, 1],
@@ -102,7 +104,7 @@ export default function Otp({
                 <AnimatedText
                     style={[styles.cell, animatedCellStyle]}
                     className={clsx(
-                        "text-[20px] font-semibold ",
+                        "bg-white text-[20px] font-semibold   dark:bg-text-primary-dark",
                         otpStatus
                             ? "text-text-primary-dark dark:text-white"
                             : "text-text-danger",

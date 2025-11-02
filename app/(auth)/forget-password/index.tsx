@@ -56,13 +56,13 @@ export default function ForgetPassword() {
                             </View>
                         </View>
                         <View className="flex gap-y-5">
-                            <Button size="lg">Continue</Button>
+                            <Button size="lg">Verification</Button>
                             <Text className="text-center text-[12px] text-text-secondary">
                                 {isOtpCorrect
                                     ? " Didn't receive code?"
                                     : "Wrong OTP"}
 
-                                <Text className="text-text-primary-dark">
+                                <Text className="text-text-primary-dark dark:text-text-primary">
                                     {" "}
                                     Resend now
                                 </Text>
