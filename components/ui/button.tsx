@@ -7,11 +7,13 @@ interface Button {
     size: "sm" | "md" | "lg" | "custom";
     style?: string;
     visibility?: string;
+    onPress?: (item?: any) => void;
     children: React.ReactNode;
 }
 export default function Button({
     children,
     visibility,
+    onPress,
     isLoading,
     size,
     style,
@@ -21,7 +23,7 @@ export default function Button({
         "rounded-[8px] xl:w-[120px] w-[120px] h-[42px] lg:h-[52px]": small,
         "rounded-[12px] xl:w-[200px] h-[42px] w-[150px] lg:h-[52px]":
             size == "lg",
-        "rounded-[12px] h-[36px] w-full lg:h-[46px]": size = "custom",
+        "rounded-[12px] h-[36px] w-full lg:h-[46px]": (size = "custom"),
     };
 
     return (
@@ -31,6 +33,7 @@ export default function Button({
                 visibility,
                 sizes,
             )}
+            onPress={onPress}
         >
             {small ? (
                 isLoading ? (
@@ -48,10 +51,11 @@ export default function Button({
             ) : (
                 <Pressable
                     className={clsx(
-                        "absolute inset-0 flex h-full flex-row gap-x-2 items-center justify-center transition-colors duration-150 ease-in hover:bg-none",
+                        "absolute inset-0 flex h-full flex-row items-center justify-center gap-x-2 transition-colors duration-150 ease-in hover:bg-none",
 
                         style,
                     )}
+                    onPress={onPress}
                 >
                     {isLoading && (
                         <Pressable className="pl-2">

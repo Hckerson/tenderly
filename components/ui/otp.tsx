@@ -8,7 +8,7 @@ import styles, {
     CELL_SIZE,
     DEFAULT_CELL_BG_COLOR,
     NOT_EMPTY_CELL_BG_COLOR,
-} from "@/lib/constants";
+} from "@/app/(auth)/forget-password/style";
 
 import clsx from "clsx";
 import {

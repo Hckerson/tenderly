@@ -1,11 +1,10 @@
 import { WidthContext } from "@/app/_layout";
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
+import Otp from "@/components/ui/otp";
 import clsx from "clsx";
 import { Image } from "expo-image";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useContext, useState } from "react";
-import Otp from "@/components/ui/otp";
 import { Platform, Text, TextInput, View } from "react-native";
 
 const inbox = require("@/assets/svgs/inbox.svg");
@@ -13,9 +12,18 @@ const inbox = require("@/assets/svgs/inbox.svg");
 export default function ForgetPassword() {
     const width = useContext(WidthContext);
     const [otpSent, setOptSent] = useState<boolean>(false);
-    const [isVerifyingOtp, setIsVerifyingOtp] = useState<boolean>(true);
+    const [isOtpPage, setIsOtpPage] = useState<boolean>(false);
     const [isOtpCorrect, setIsOtpCorrect] = useState<boolean>(true);
     const native = Platform.OS === "android" || Platform.OS === "ios";
+
+    const setOtpPageStatus = () => {
+        setIsOtpPage(true);
+        setOptSent(false)
+    };
+
+    const setEamilSentStatus = ()=>{
+        setOptSent(true)
+    }
 
     return (
         <View
@@ -38,8 +46,8 @@ export default function ForgetPassword() {
                 </View>
             </View>
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
-                {isVerifyingOtp ? (
-                    <View className="flex gap-y-7 w-full">
+                {isOtpPage ? (
+                    <View className="flex w-full gap-y-7">
                         <View className="box-border w-full gap-y-4  ">
                             <View className="gap-y-4">
                                 <Text className="text-center text-text-primary-dark dark:text-white">
@@ -52,7 +60,11 @@ export default function ForgetPassword() {
                                 </Text>
                             </View>
                             <View className="box-border w-full items-center">
-                                <Otp number={5} setter={setIsOtpCorrect} otpStatus = {isOtpCorrect} />
+                                <Otp
+                                    number={5}
+                                    setter={setIsOtpCorrect}
+                                    otpStatus={isOtpCorrect}
+                                />
                             </View>
                         </View>
                         <View className="flex gap-y-5">
@@ -97,7 +109,9 @@ export default function ForgetPassword() {
                                 />
                             </View>
                         </View>
-                        <Button size="lg">Continue</Button>
+                        <Button onPress={setEamilSentStatus} size="lg">
+                            Continue
+                        </Button>
                     </View>
                 )}
             </View>
@@ -123,7 +137,7 @@ export default function ForgetPassword() {
                                         </Text>
                                     </View>
                                 </View>
-                                <Button size="lg">Continue</Button>
+                                <Button onPress={setOtpPageStatus} size="lg">Continue</Button>
                             </View>
                         </View>
                     </View>

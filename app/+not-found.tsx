@@ -23,7 +23,7 @@ export default function NotFound() {
                                     <Text>404</Text>
                                 </View>
                                 <Text className="text-center text-[16px] text-text-tertiary">
-                                    This page has been moved or Doesn't Exist.
+                                    This page has been moved or Doesn   't Exist.
                                 </Text>
                             </View>
                         </View>
