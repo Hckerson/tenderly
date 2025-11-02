@@ -4,7 +4,7 @@ import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import { useContext, useState } from "react";
-import { Platform, Text, TextInput, View } from "react-native";
+import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
 const checkMark = require("@/assets/svgs/check.svg");
 
@@ -14,6 +14,10 @@ export default function PasswordReset() {
     const [isVerificationComplete, setIsVerificationComplete] =
         useState<boolean>(false);
     const [hiddenStatus, setHiddenStatus] = useState<boolean>(true);
+
+    const setVerificationStatus = () => {
+        setIsVerificationComplete(true);
+    };
     return (
         <View
             style={{ width }}
@@ -100,11 +104,16 @@ export default function PasswordReset() {
                     </View>
                 </View>
 
-                <Button size="lg">Reset Password</Button>
+                <Button onPress={setVerificationStatus} size="lg">
+                    Reset Password
+                </Button>
             </View>
             {isVerificationComplete && (
-                <View className="absolute h-full w-full bg-black/80">
-                    <View className="flex h-full w-full items-center justify-center">
+                <View className="absolute z-20 h-full w-full bg-black/80">
+                    <Pressable
+                        className="flex h-full w-full items-center justify-center"
+                        onPress={() => setIsVerificationComplete(false)}
+                    >
                         <View className="max-h-[343px] w-full max-w-[312px] rounded-3xl bg-background-pent p-5 pt-7 dark:bg-background-tertiary-dark">
                             <View className="flex w-full items-center gap-y-4">
                                 <View className="flex w-full items-center gap-y-5">
@@ -127,7 +136,7 @@ export default function PasswordReset() {
                                 <Button size="lg">Login Now</Button>
                             </View>
                         </View>
-                    </View>
+                    </Pressable>
                 </View>
             )}
         </View>

@@ -5,7 +5,7 @@ import Otp from "@/components/ui/otp";
 import clsx from "clsx";
 import { Image } from "expo-image";
 import { useContext, useState } from "react";
-import { Platform, Text, TextInput, View } from "react-native";
+import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
 const inbox = require("@/assets/svgs/inbox.svg");
 
@@ -18,12 +18,12 @@ export default function ForgetPassword() {
 
     const setOtpPageStatus = () => {
         setIsOtpPage(true);
-        setOptSent(false)
+        setOptSent(false);
     };
 
-    const setEamilSentStatus = ()=>{
-        setOptSent(true)
-    }
+    const setEamilSentStatus = () => {
+        setOptSent(true);
+    };
 
     return (
         <View
@@ -117,7 +117,10 @@ export default function ForgetPassword() {
             </View>
             {otpSent && (
                 <View className="absolute h-full w-full bg-black/80">
-                    <View className="flex h-full w-full items-center justify-center">
+                    <Pressable
+                        className="flex h-full w-full items-center justify-center"
+                        onPress={() => setOptSent(false)}
+                    >
                         <View className="max-h-[343px] w-full max-w-[312px] rounded-3xl bg-background-pent p-5 pt-7 dark:bg-background-tertiary-dark">
                             <View className="flex w-full items-center gap-y-4">
                                 <View className="flex w-full items-center gap-y-5">
@@ -137,10 +140,12 @@ export default function ForgetPassword() {
                                         </Text>
                                     </View>
                                 </View>
-                                <Button onPress={setOtpPageStatus} size="lg">Continue</Button>
+                                <Button onPress={setOtpPageStatus} size="lg">
+                                    Continue
+                                </Button>
                             </View>
                         </View>
-                    </View>
+                    </Pressable>
                 </View>
             )}
         </View>
