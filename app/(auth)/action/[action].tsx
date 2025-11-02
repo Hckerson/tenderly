@@ -38,75 +38,114 @@ export default function Signup() {
             <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">
                 <Back />
                 <View className="flex">
-                    <Text className="w-3/4 text-2xl font-semibold  text-text-primary">
+                    <Text
+                        style={{
+                            fontFamily: Platform.select({
+                                android: "PublicSans_600SemiBold_Italic",
+                                ios: "PublicSans-SemiBold_Italic",
+                            }),
+                        }}
+                        className="w-3/4 text-2xl font-semibold  text-text-primary"
+                    >
                         Go ahead and complete your account and setup
                     </Text>
-                    <Text className="text-sm font-normal text-text-secondary-dark">
+                    <Text
+                        style={{
+                            fontFamily: Platform.select({
+                                android: "PublicSans_400Regular_Italic",
+                                ios: "PublicSans-Regular_Italic",
+                            }),
+                        }}
+                        className="text-sm font-normal text-text-secondary-dark"
+                    >
                         Create your account and simplify your workflow
                         instantly.
                     </Text>
                 </View>
             </View>
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
+                <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
+                    <Pressable
+                        onPress={() => switchTab("Login")}
+                        className="flex flex-1 items-center justify-center"
+                    >
+                        <Text
+                            className={clsx(
+                                "",
+                                activeTab == "Login"
+                                    ? "text-[14px] font-medium text-text-primary-dark "
+                                    : "text-text-secondary dark:text-text-secondary-dark",
+                            )}
+                            style={{
+                                fontFamily: Platform.select({
+                                    android: "PublicSans_500Medium_Italic",
+                                    ios: "PublicSans-Medium_Italic",
+                                }),
+                            }}
+                        >
+                            Login
+                        </Text>
+                    </Pressable>
+                    <Pressable
+                        onPress={() => switchTab("Signup")}
+                        className="flex flex-1 items-center justify-center"
+                    >
+                        <Text
+                            className={clsx(
+                                "",
+                                activeTab == "Login"
+                                    ? "text-text-secondary dark:text-text-secondary-dark"
+                                    : "text-[14px] font-medium text-text-primary-dark ",
+                            )}
+                            style={{
+                                fontFamily: Platform.select({
+                                    android: "PublicSans_500Medium_Italic",
+                                    ios: "PublicSans-Medium_Italic",
+                                }),
+                            }}
+                        >
+                            Signup
+                        </Text>
+                    </Pressable>
+                    <Pressable
+                        style={{
+                            transform: native ? [{ translateY: 4 }] : [],
+                        }}
+                        onPress={() => switchTab()}
+                        className={clsx(
+                            "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
+                            activeTab == "Login" ? "left-1" : "right-1",
+                        )}
+                    >
+                        <Text
+                            className={clsx(
+                                "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
+                            )}
+                            style={{
+                                fontFamily: Platform.select({
+                                    android: "PublicSans_500Medium_Italic",
+                                    ios: "PublicSans-Medium_Italic",
+                                }),
+                            }}
+                        >
+                            {activeTab}
+                        </Text>
+                    </Pressable>
+                </View>
                 {activeTab === "Signup" ? (
                     <View className="grid gap-y-6">
-                        <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
-                            <Pressable
-                                onPress={() => switchTab("Login")}
-                                className="flex flex-1 items-center justify-center"
-                            >
-                                <Text
-                                    className={clsx(
-                                        "",
-                                        activeTab == "Signup"
-                                            ? "text-text-secondary dark:text-text-secondary-dark"
-                                            : "text-[14px] font-medium text-text-primary-dark ",
-                                    )}
-                                >
-                                    Login
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                onPress={() => switchTab("Signup")}
-                                className="flex flex-1 items-center justify-center"
-                            >
-                                <Text
-                                    className={clsx(
-                                        "",
-                                        activeTab == "Signup"
-                                            ? "text-[14px] font-medium text-text-primary-dark "
-                                            : "text-text-secondary dark:text-text-secondary-dark",
-                                    )}
-                                >
-                                    Signup
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                style={{
-                                    transform: native
-                                        ? [{ translateY: 4 }]
-                                        : [],
-                                }}
-                                onPress={() => switchTab()}
-                                className={clsx(
-                                    "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
-                                    activeTab == "Signup"
-                                        ? "right-1"
-                                        : "left-1",
-                                )}
-                            >
-                                <Text
-                                    className={clsx(
-                                        "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
-                                    )}
-                                >
-                                    {activeTab}
-                                </Text>
-                            </Pressable>
-                        </View>
                         <View className="flex w-full flex-row justify-center gap-x-4">
                             <View className="flex-1 flex-col gap-y-2">
-                                <Text className="text-text-secondary">
+                                <Text
+                                    style={{
+                                        fontFamily: Platform.select({
+                                            android:
+                                                "PublicSans_500Medium_Italic",
+                                            ios: "PublicSans-Medium_Italic",
+                                        }),
+                                    }}
+                                    className="text-text-secondary"
+                                >
                                     First Name
                                 </Text>
                                 <TextInput
@@ -118,7 +157,16 @@ export default function Signup() {
                                 />
                             </View>
                             <View className="flex-1 flex-col gap-y-2">
-                                <Text className="text-text-secondary">
+                                <Text
+                                    style={{
+                                        fontFamily: Platform.select({
+                                            android:
+                                                "PublicSans_500Medium_Italic",
+                                            ios: "PublicSans-Medium_Italic",
+                                        }),
+                                    }}
+                                    className="text-text-secondary"
+                                >
                                     Last Name
                                 </Text>
                                 <TextInput
@@ -131,7 +179,17 @@ export default function Signup() {
                             </View>
                         </View>
                         <View className="flex flex-col gap-y-2">
-                            <Text className="text-text-secondary">Email</Text>
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                                className="text-text-secondary"
+                            >
+                                Email
+                            </Text>
                             <TextInput
                                 className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
                                 style={{ borderWidth: 1 }}
@@ -141,7 +199,15 @@ export default function Signup() {
                             />
                         </View>
                         <View className="flex flex-col gap-y-2">
-                            <Text className="text-text-secondary">
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                                className="text-text-secondary"
+                            >
                                 Password
                             </Text>
                             <View
@@ -179,7 +245,15 @@ export default function Signup() {
                             </View>
                         </View>
                         <View className="flex flex-col gap-y-2">
-                            <Text className="text-text-secondary">
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_400Regular_Italic",
+                                        ios: "PublicSans-Regular_Italic",
+                                    }),
+                                }}
+                                className="text-text-secondary"
+                            >
                                 Confirm password
                             </Text>
                             <View
@@ -219,60 +293,18 @@ export default function Signup() {
                     </View>
                 ) : (
                     <View className="grid gap-y-6">
-                        <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
-                            <Pressable
-                                onPress={() => switchTab("Login")}
-                                className="flex flex-1 items-center justify-center"
-                            >
-                                <Text
-                                    className={clsx(
-                                        "",
-                                        activeTab == "Login"
-                                            ? "text-[14px] font-medium text-text-primary-dark "
-                                            : "text-text-secondary dark:text-text-secondary-dark",
-                                    )}
-                                >
-                                    Login
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                onPress={() => switchTab("Signup")}
-                                className="flex flex-1 items-center justify-center"
-                            >
-                                <Text
-                                    className={clsx(
-                                        "",
-                                        activeTab == "Login"
-                                            ? "text-text-secondary dark:text-text-secondary-dark"
-                                            : "text-[14px] font-medium text-text-primary-dark ",
-                                    )}
-                                >
-                                    Signup
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                style={{
-                                    transform: native
-                                        ? [{ translateY: 4 }]
-                                        : [],
-                                }}
-                                onPress={() => switchTab()}
-                                className={clsx(
-                                    "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
-                                    activeTab == "Login" ? "left-1" : "right-1",
-                                )}
-                            >
-                                <Text
-                                    className={clsx(
-                                        "text-center text-[14px] font-medium text-text-primary-dark dark:text-text-primary",
-                                    )}
-                                >
-                                    {activeTab}
-                                </Text>
-                            </Pressable>
-                        </View>
                         <View className="flex flex-col gap-y-2">
-                            <Text className="text-text-secondary">Email</Text>
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                                className="text-text-secondary"
+                            >
+                                Email
+                            </Text>
                             <TextInput
                                 className="border-1 h-12 rounded-[10px] border-[#EFEFEF] bg-background-pent pl-4 placeholder:text-text-primary-dark dark:border-background-quad-dark dark:bg-background-quad-dark placeholder:dark:text-text-primary"
                                 style={{ borderWidth: 1 }}
@@ -282,7 +314,15 @@ export default function Signup() {
                             />
                         </View>
                         <View className="flex flex-col gap-y-2">
-                            <Text className="text-text-secondary">
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                                className="text-text-secondary"
+                            >
                                 Password
                             </Text>
                             <View
@@ -332,19 +372,47 @@ export default function Signup() {
                                     onValueChange={setChecked}
                                     color={isChecked ? "#1A414B" : undefined}
                                 />
-                                <Text className="text-[14px] font-medium text-text-secondary dark:text-white">
+                                <Text
+                                    style={{
+                                        fontFamily: Platform.select({
+                                            android:
+                                                "PublicSans_500Medium_Italic",
+                                            ios: "PublicSans-Medium_Italic",
+                                        }),
+                                    }}
+                                    className="text-[14px] font-medium text-text-secondary dark:text-white"
+                                >
                                     Remember me
                                 </Text>
                             </View>
-                            <Text className="text-primary text-[14px] font-medium dark:text-white">
-                                Forgot password
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                                className="text-primary text-[14px] font-medium dark:text-white"
+                            >
+                                Forgot password?
                             </Text>
                         </View>
                     </View>
                 )}
                 {activeTab == "Login" ? (
                     <View className={clsx(" gap-y-5")}>
-                        <Button size="lg">Login</Button>
+                        <Button size="lg">
+                            <Text
+                                style={{
+                                    fontFamily: Platform.select({
+                                        android: "PublicSans_500Medium_Italic",
+                                        ios: "PublicSans-Medium_Italic",
+                                    }),
+                                }}
+                            >
+                                Login
+                            </Text>
+                        </Button>
                         <View className="flex gap-y-5">
                             <View className="flex flex-row items-center">
                                 <View className="flex-1 border-t border-stroke-secondary "></View>
@@ -360,7 +428,17 @@ export default function Signup() {
                                         style={{ height: 25, width: 25 }}
                                         source={google}
                                     />
-                                    <Link href={"/"} className="text-center">
+                                    <Link
+                                        style={{
+                                            fontFamily: Platform.select({
+                                                android:
+                                                    "PublicSans_600SemiBold_Italic",
+                                                ios: "PublicSans-SemiBold_Italic",
+                                            }),
+                                        }}
+                                        href={"/"}
+                                        className="text-center"
+                                    >
                                         Google
                                     </Link>
                                 </View>
@@ -372,7 +450,17 @@ export default function Signup() {
                                         style={{ height: 25, width: 25 }}
                                         source={facebook}
                                     />
-                                    <Link href={"/"} className="text-center">
+                                    <Link
+                                        style={{
+                                            fontFamily: Platform.select({
+                                                android:
+                                                    "PublicSans_600SemiBold_Italic",
+                                                ios: "PublicSans-SemiBold_Italic",
+                                            }),
+                                        }}
+                                        href={"/"}
+                                        className="text-center"
+                                    >
                                         Facebook
                                     </Link>
                                 </View>
@@ -380,7 +468,18 @@ export default function Signup() {
                         </View>
                     </View>
                 ) : (
-                    <Button size="lg">Register</Button>
+                    <Button size="lg">
+                        <Text
+                            style={{
+                                fontFamily: Platform.select({
+                                    android: "PublicSans_500Medium_Italic",
+                                    ios: "PublicSans-Medium_Italic",
+                                }),
+                            }}
+                        >
+                            Register
+                        </Text>
+                    </Button>
                 )}
             </View>
         </View>

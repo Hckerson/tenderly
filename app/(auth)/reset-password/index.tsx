@@ -26,10 +26,26 @@ export default function PasswordReset() {
             <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">
                 <Back />
                 <View className="flex">
-                    <Text className="w-3/4 text-2xl font-semibold  text-text-primary">
+                    <Text
+                        style={{
+                            fontFamily: Platform.select({
+                                android: "PublicSans_600SemiBold_Italic",
+                                ios: "PublicSans-SemiBold_Italic",
+                            }),
+                        }}
+                        className="w-3/4 text-2xl font-semibold  text-text-primary"
+                    >
                         Secure your account with new passwords
                     </Text>
-                    <Text className="text-sm font-normal text-text-secondary-dark">
+                    <Text
+                        style={{
+                            fontFamily: Platform.select({
+                                android: "PublicSans_400Regular_Italic",
+                                ios: "PublicSans-Regular_Italic",
+                            }),
+                        }}
+                        className="text-sm font-normal text-text-secondary-dark"
+                    >
                         Create a strong password to secure your account now.
                     </Text>
                 </View>
