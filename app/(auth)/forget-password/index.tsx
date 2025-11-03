@@ -1,4 +1,4 @@
-import { WidthContext } from "@/app/_layout";
+
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
 import Otp from "@/components/ui/otp";
@@ -10,7 +10,6 @@ import { Platform, Pressable, Text, TextInput, View } from "react-native";
 const inbox = require("@/assets/svgs/inbox.svg");
 
 export default function ForgetPassword() {
-    const width = useContext(WidthContext);
     const [otpSent, setOptSent] = useState<boolean>(false);
     const [isOtpPage, setIsOtpPage] = useState<boolean>(false);
     const [isOtpCorrect, setIsOtpCorrect] = useState<boolean>(true);
@@ -27,7 +26,6 @@ export default function ForgetPassword() {
 
     return (
         <View
-            style={{ width }}
             className="relative flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
         >
             <View

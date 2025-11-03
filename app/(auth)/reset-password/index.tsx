@@ -1,15 +1,14 @@
-import { WidthContext } from "@/app/_layout";
+
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
-import { useContext, useState } from "react";
+import {useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
 const checkMark = require("@/assets/svgs/check.svg");
 
 export default function PasswordReset() {
-    const width = useContext(WidthContext);
     const native = Platform.OS === "android" || Platform.OS === "ios";
     const [isVerificationComplete, setIsVerificationComplete] =
         useState<boolean>(false);
@@ -20,7 +19,6 @@ export default function PasswordReset() {
     };
     return (
         <View
-            style={{ width }}
             className="relative flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
         >
             <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">

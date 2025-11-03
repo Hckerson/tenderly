@@ -1,4 +1,4 @@
-import { WidthContext } from "@/app/_layout";
+
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Checkbox } from "expo-checkbox";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
 const google = require("@/assets/svgs/google.svg");
@@ -15,7 +15,6 @@ const facebook = require("@/assets/svgs/facebook.svg");
 type Options = "Login" | "Signup";
 
 export default function Login() {
-    const width = useContext(WidthContext);
     const [activeTab, setActiveTab] = useState<Options>("Login");
     const [hiddenStatus, setHiddenStatus] = useState(true);
     const [isChecked, setChecked] = useState(false);
@@ -31,7 +30,6 @@ export default function Login() {
 
     return (
         <View
-            style={{ width }}
             className="flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
         >
             <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">
@@ -414,14 +412,14 @@ export default function Login() {
                         </Button>
                         <View className="flex gap-y-5">
                             <View className="flex flex-row items-center">
-                                <View className="flex-1 border-t border-stroke-secondary "></View>
-                                <Text className="px-2">Or login with</Text>
-                                <View className="flex-1 border-t border-stroke-secondary "></View>
+                                <View className="flex-1 border-t border-stroke-secondary dark:border-stroke-secondary/10 "></View>
+                                <Text className="px-2 dark:text-white">Or login with</Text>
+                                <View className="flex-1 border-t border-stroke-secondary dark:border-stroke-secondary/10 "></View>
                             </View>
                             <View className="flex h-12 flex-row gap-x-3">
                                 <View
                                     style={{ borderWidth: 1 }}
-                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px]  border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-quad-dark"
                                 >
                                     <Image
                                         style={{ height: 25, width: 25 }}
@@ -436,14 +434,14 @@ export default function Login() {
                                             }),
                                         }}
                                         href={"/"}
-                                        className="text-center"
+                                        className="text-center dark:text-white"
                                     >
                                         Google
                                     </Link>
                                 </View>
                                 <View
                                     style={{ borderWidth: 1 }}
-                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-tertiary-dark"
+                                    className="border-1 h-full  flex-1 flex-row items-center justify-center gap-x-2 rounded-[10px] border-[#EFEFEF] bg-background-tertiary dark:border-background-quad-dark dark:bg-background-quad-dark"
                                 >
                                     <Image
                                         style={{ height: 25, width: 25 }}
@@ -458,7 +456,7 @@ export default function Login() {
                                             }),
                                         }}
                                         href={"/"}
-                                        className="text-center"
+                                        className="text-center dark:text-white"
                                     >
                                         Facebook
                                     </Link>
