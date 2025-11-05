@@ -1,38 +1,40 @@
-
 import Back from "@/components/ui/back";
 import Button from "@/components/ui/button";
 import Feather from "@expo/vector-icons/Feather";
 import clsx from "clsx";
 import { Checkbox } from "expo-checkbox";
 import { Image } from "expo-image";
-import { Link } from "expo-router";
-import {  useState } from "react";
+import { Link, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
 const google = require("@/assets/svgs/google.svg");
 const facebook = require("@/assets/svgs/facebook.svg");
 
-type Options = "Login" | "Signup";
+type Options = "login" | "signup" | null;
 
-export default function Signup() {
-    const [activeTab, setActiveTab] = useState<Options>("Signup");
+export default function Action() {
+    const [activeTab, setActiveTab] = useState<Options>(null);
     const [hiddenStatus, setHiddenStatus] = useState(true);
     const [isChecked, setChecked] = useState(false);
+    const { action } = useLocalSearchParams();
     const native = Platform.OS === "android" || Platform.OS === "ios";
 
     const switchTab = (e?: Options) => {
         if (!e || e == undefined) {
-            setActiveTab(activeTab == "Login" ? "Signup" : "Login");
+            setActiveTab(activeTab == "login" ? "signup" : "login");
             return;
         }
         setActiveTab(e);
     };
 
+    useEffect(() => {
+        setActiveTab(action as Options);
+    }, []);
+
+    console.log(activeTab);
     return (
-        <View
-   
-            className="flex-1 justify-start bg-background-primary dark:bg-background-primary-dark"
-        >
+        <View className="flex-1 justify-start bg-background-primary dark:bg-background-primary-dark">
             <View className="box-border flex w-full gap-y-8 px-5  pb-10  pt-10">
                 <Back />
                 <View className="flex">
@@ -64,13 +66,13 @@ export default function Signup() {
             <View className="h-full gap-y-8 rounded-t-[30px] bg-background-tertiary     p-5 dark:bg-background-tertiary-dark">
                 <View className="relative flex h-[48px] w-full flex-row rounded-[10px] bg-background-quad p-1 dark:bg-background-quad-dark ">
                     <Pressable
-                        onPress={() => switchTab("Login")}
+                        onPress={() => switchTab("login")}
                         className="flex flex-1 items-center justify-center"
                     >
                         <Text
                             className={clsx(
                                 "",
-                                activeTab == "Login"
+                                activeTab == "login"
                                     ? "text-[14px] font-medium text-text-primary-dark "
                                     : "text-text-secondary dark:text-text-secondary-dark",
                             )}
@@ -81,17 +83,17 @@ export default function Signup() {
                                 }),
                             }}
                         >
-                            Login
+                            login
                         </Text>
                     </Pressable>
                     <Pressable
-                        onPress={() => switchTab("Signup")}
+                        onPress={() => switchTab("signup")}
                         className="flex flex-1 items-center justify-center"
                     >
                         <Text
                             className={clsx(
                                 "",
-                                activeTab == "Login"
+                                activeTab == "login"
                                     ? "text-text-secondary dark:text-text-secondary-dark"
                                     : "text-[14px] font-medium text-text-primary-dark ",
                             )}
@@ -102,7 +104,7 @@ export default function Signup() {
                                 }),
                             }}
                         >
-                            Signup
+                            signup
                         </Text>
                     </Pressable>
                     <Pressable
@@ -112,7 +114,7 @@ export default function Signup() {
                         onPress={() => switchTab()}
                         className={clsx(
                             "absolute flex  h-[40px] w-[48%] items-center justify-center  rounded-[10px]  bg-background-tertiary dark:bg-background-tertiary-dark",
-                            activeTab == "Login" ? "left-1" : "right-1",
+                            activeTab == "login" ? "left-1" : "right-1",
                         )}
                     >
                         <Text
@@ -130,7 +132,7 @@ export default function Signup() {
                         </Text>
                     </Pressable>
                 </View>
-                {activeTab === "Signup" ? (
+                {activeTab === "signup" ? (
                     <View className="grid gap-y-6">
                         <View className="flex w-full flex-row justify-center gap-x-4">
                             <View className="flex-1 flex-col gap-y-2">
@@ -397,7 +399,7 @@ export default function Signup() {
                         </View>
                     </View>
                 )}
-                {activeTab == "Login" ? (
+                {activeTab == "login" ? (
                     <View className={clsx(" gap-y-5")}>
                         <Button size="lg">
                             <Text
@@ -408,7 +410,7 @@ export default function Signup() {
                                     }),
                                 }}
                             >
-                                Login
+                                login
                             </Text>
                         </Button>
                         <View className="flex gap-y-5">

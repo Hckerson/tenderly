@@ -14,7 +14,26 @@ export default function RootLayout() {
     return (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <Stack>
-                <Stack.Screen name="(auth)/forget-password/index" />
+                <Stack.Screen
+                    name="(auth)/forget-password/index"
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="(auth)/action/[action]"
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="(auth)/login/index"
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="(auth)/reset-password/index"
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="onboarding/index"
+                    options={{ headerShown: false }}
+                />
             </Stack>
         </SafeAreaProvider>
     );
